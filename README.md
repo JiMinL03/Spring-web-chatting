@@ -5,4 +5,4 @@
 - **버전 관리:** Git
 - **개발 환경:** Eclipse
 - **도구:** lombok
-<img src="https://github.com/JiMinL03/calendar/assets/147581729/3014b5c8-69a7-4214-bd18-9ed93cfd33a1" width = "100%">
+<img src="https://github.com/JiMinL03/Spring-web-chatting/assets/147581729/ca908bc9-04ec-47fc-a59e-2199a81ab15a" width = "100%">

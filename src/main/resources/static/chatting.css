@@ -8,11 +8,12 @@ body {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	background-color: rgb(255, 255, 255);
+	background: linear-gradient(to right,rgb(119, 150, 230), #EEEDEB);
 }
 
 .chatting {
 	background-color: rgb(119, 150, 230);
+	box-shadow: 4px 4px 4px rgb(119, 150, 230), -4px -4px 4px rgb(119, 150, 230);
 	border-radius: 5%;
 	height: 700px;
 	width: 500px;
@@ -63,4 +64,8 @@ input{
 }
 #send:hover {
    background: rgb(119, 150, 230);
+}
+#talk_container {
+    max-height: 450px; /* 표시하고자 하는 최대 높이 */
+    overflow-y: auto; /* 수직 스크롤바 자동 표시 */
 }

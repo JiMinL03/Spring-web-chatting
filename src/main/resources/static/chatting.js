@@ -23,12 +23,18 @@ function updatePage(message) {
 document.getElementById('send').addEventListener('click', function() {
 	event.preventDefault();
 	var messageContent = $("#message").val();
-    stompClient.send("/app/hello", {},messageContent);
+	var nameContent = $("#name").data("message");
+	// JSON 객체를 생성하여 두 값을 포함시킴
+	var dataToSend = {
+        messageContent: messageContent,
+        nameContent: nameContent
+    };
+    console.log(dataToSend);
+    stompClient.send("/app/hello", {}, JSON.stringify(dataToSend));
 });
 
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
-    $( "#send" ).click(function() { sendName(); });
 });

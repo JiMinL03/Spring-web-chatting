@@ -24,8 +24,9 @@ public class ChattingController {
 
 	@MessageMapping("/hello")
 	@SendTo("/topic/greetings")
-	public String greeting(@Payload String message) throws Exception {
-		String processedMessage = message;
-		return processedMessage;
+	public String greeting(@Payload name name) throws Exception {
+		String nameContent = name.getNameContent();
+		String messageContent = name.getMessageContent();
+		return "[" +nameContent +"]"+ "님: " + messageContent;
 	}
 }

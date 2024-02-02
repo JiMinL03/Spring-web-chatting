@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>chatting</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/name.css}">
+</head>
+
+<body>
+	<div class="chatting">
+		<div class="container">
+			<img class="image" src="free-icon-chat-bubble-3177346.png" height="80px" width="80px">
+			<div class="talk">
+			</div>
+				<form class="sendMessage" th:action="@{/name}" method="post">
+					<input name="message" id="message" type="text" placeholder="사용할 닉네임을 입력해주세요.">
+					<button id="send" type="submit">sent</button>
+				</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -11,41 +11,7 @@ body {
 	background-color: rgb(255, 255, 255);
 }
 
-.chatting {
-	background-color: rgb(119, 150, 230);
-	border-radius: 5%;
-	height: 700px;
-	width: 500px;
-}
 
-.container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	overflow: hidden;
-}
-.talk {
-	width: 500px;
-	height: 500px;
-	background-color:#eee;
-}
-label{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-top: 10px;
-}
-.sendMessage{
-	background-color: white;
-	width: 500px;
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: row;
-	overflow: hidden;
-}
 input{
 	height: 50px;
 	width: 400px;

@@ -21,6 +21,7 @@ function updatePage(message) {
 }
 
 document.getElementById('send').addEventListener('click', function() {
+	event.preventDefault();
 	var messageContent = $("#message").val();
     stompClient.send("/app/hello", {},messageContent);
 });

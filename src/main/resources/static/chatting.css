@@ -13,7 +13,6 @@ body {
 
 .chatting {
 	background-color: rgb(119, 150, 230);
-	box-shadow: 4px 4px 4px rgb(119, 150, 230), -4px -4px 4px rgb(119, 150, 230);
 	border-radius: 5%;
 	height: 700px;
 	width: 500px;
@@ -30,6 +29,7 @@ body {
 	width: 500px;
 	height: 500px;
 	background-color:#eee;
+	margin-top: 50px;
 }
 label{
 	display: flex;
@@ -68,4 +68,17 @@ input{
 #talk_container {
     max-height: 450px; /* 표시하고자 하는 최대 높이 */
     overflow-y: auto; /* 수직 스크롤바 자동 표시 */
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* 일부 브라우저를 위해 추가 */
+    white-space: pre-line; /* 공백 및 줄 바꿈에 대한 처리 */
+    word-break: break-all; /* 긴 단어에 대한 추가 처리 */
+}
+
+#talk_container::-webkit-scrollbar {
+    width: 12px; /* 스크롤바의 너비 */
+}
+
+#talk_container::-webkit-scrollbar-thumb {
+    background-color:  rgb(119, 150, 230); /* 스크롤바의 색상 */
+    border-radius: 6px; /* 스크롤바의 모서리 반경 */
 }

@@ -13,6 +13,7 @@
 <body>
 	<div class="chatting">
 		<div class="container">
+		<label id="countUser"></label>
 			<div class="talk">
 				<label th:text="'환영합니다. '+'[' + ${message} +']'+ '님!'"></label>
 				<label id="name" th:attr="data-message=${message}"></label>

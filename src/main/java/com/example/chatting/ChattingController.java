@@ -37,6 +37,14 @@ public class ChattingController {
 		String messageContent = name.getMessageContent();
 		return "[" +nameContent +"]"+ "님: " + messageContent;
 	}
+	private int userCount = 0;
+	@MessageMapping("/countUser")
+    @SendTo("/topic/countUser")
+    public String countUser() {
+        // 클라이언트로부터 새로운 접속자가 있을 때마다 userCount를 증가시키고 반환
+        userCount++;
+        return String.valueOf(userCount);
+    }
 	
 	@EventListener
     public void handleWebSocketConnectListener(SessionConnectEvent event) {

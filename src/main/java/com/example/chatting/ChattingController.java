@@ -1,5 +1,7 @@
 package com.example.chatting;
 
+import java.io.IOException;
+
 import org.springframework.context.event.EventListener;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -13,12 +15,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.socket.messaging.SessionConnectEvent;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class ChattingController {
 	private final SimpMessagingTemplate messagingTemplate;
+	private Count count = new Count();
+	private name name = new name();
+	
 	@GetMapping("/chat")
 	public String chatting() {
 		return "name";
@@ -35,25 +43,26 @@ public class ChattingController {
 	public String greeting(@Payload name name) throws Exception {
 		String nameContent = name.getNameContent();
 		String messageContent = name.getMessageContent();
-		return "[" +nameContent +"]"+ "님: " + messageContent;
+		return "[" + nameContent + "]" + "님: " + messageContent;
 	}
-	private int userCount = 0;
-	@MessageMapping("/countUser")
-    @SendTo("/topic/countUser")
-    public String countUser() {
-        // 클라이언트로부터 새로운 접속자가 있을 때마다 userCount를 증가시키고 반환
-        userCount++;
-        return String.valueOf(userCount);
-    }
-	
-	@EventListener
-    public void handleWebSocketConnectListener(SessionConnectEvent event) {
-        StompHeaderAccessor headers = StompHeaderAccessor.wrap(event.getMessage());
 
-        // name 객체 생성 및 초기화
-        name name = new name();
-		String nameContent = name.getNameContent();
-        // 연결된 모든 클라이언트에게 입장 알림 메시지를 보냄
-        messagingTemplate.convertAndSend("/topic/greetings", "[" +nameContent +"]"+ "님"+"이 입장하셨습니다.");
+	@MessageMapping("/countUser")
+	@SendTo("/topic/countUser")
+	public String countUser(@Payload Count count) {
+        if (count.getLeaveUser() != 0) {
+            this.count.setUserCount(this.count.getUserCount() - count.getLeaveUser());
+        }
+        this.count.setUserCount(this.count.getUserCount() + 1);
+        return String.valueOf(this.count.getUserCount());
     }
+
+	@EventListener
+	public void handleWebSocketConnectListener(SessionConnectEvent event) {
+		StompHeaderAccessor headers = StompHeaderAccessor.wrap(event.getMessage());
+
+		// name 객체 생성 및 초기화
+		String nameContent = this.name.getNameContent();
+		// 연결된 모든 클라이언트에게 입장 알림 메시지를 보냄
+		messagingTemplate.convertAndSend("/topic/greetings", "[" + nameContent + "]" + "님" + "이 입장하셨습니다.");
+	}
 }
